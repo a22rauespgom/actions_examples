@@ -1,0 +1,11 @@
+name: Mi acción
+
+on: [push]
+
+jobs:
+  mi-trabajo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Paso 1
+        run: echo "Hola, este es mi primer paso en mi acción"
