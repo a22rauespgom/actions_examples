@@ -1,4 +1,4 @@
-# Project Name
+# Actions example
 
 A brief description of your project.
 
@@ -24,4 +24,3 @@ Guidelines for contributing to your project.
 ## License
 
 Information about the license for your project.
-# actions_examples
