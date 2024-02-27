@@ -14,14 +14,14 @@ jobs:
       - name: Obtenint el codi del respositori
         uses: actions/checkout@v4
 
-      - name: scp a produccio
-        run: |
-          echo "${{ secrets.PROD_KEY }}" > ~/prod_key.pem
-          chmod 600 ~/prod_key.pem
-          cd ${{ github.workspace }}
-          echo "Action desplegant a produccio per ${{ github.actor }}" > ./web/last_deploy.txt
-          date >> ./web/last_deploy.txt
-          scp -r -o stricthostkeychecking=no -o UserKnownHostsFile=/dev/null -i "~/prod_key.pem" ./web/* ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}:/home/a22rauespgom/web/a22rauespgom.daw.inspedralbes.cat/public_html/actions
+      # - name: scp a produccio
+      #   run: |
+      #     echo "${{ secrets.PROD_KEY }}" > ~/prod_key.pem
+      #     chmod 600 ~/prod_key.pem
+      #     cd ${{ github.workspace }}
+      #     echo "Action desplegant a produccio per ${{ github.actor }}" > ./web/last_deploy.txt
+      #     date >> ./web/last_deploy.txt
+      #     scp -r -o stricthostkeychecking=no -o UserKnownHostsFile=/dev/null -i "~/prod_key.pem" ./web/* ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}:/home/a22rauespgom/web/a22rauespgom.daw.inspedralbes.cat/public_html/actions
 
       - name: Instal·la dependències i construeix l'aplicació
         run: |
@@ -36,6 +36,6 @@ jobs:
           cd ${{ github.workspace }}
           echo "Action desplegant VUE a produccio per ${{ github.actor }}" > ./vue/last_deploy.txt
           date >> ./vue/last_deploy.txt
-          scp -r -o stricthostkeychecking=no -o UserKnownHostsFile=/dev/null -i "~/prod_key.pem" ./vue/dist/* ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}:/home/a22rauespgom/web/a22rauespgom.daw.inspedralbes.cat/public_html/actions/vue
+          scp -r -o stricthostkeychecking=no -o UserKnownHostsFile=/dev/null -i "~/prod_key.pem" ./vue/dist/* ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}:/home/a22rauespgom/web/a22rauespgom.daw.inspedralbes.cat/public_html/actions
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
