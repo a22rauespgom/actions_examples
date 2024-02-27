@@ -36,6 +36,6 @@ jobs:
           cd ${{ github.workspace }}
           echo "Action desplegant VUE a produccio per ${{ github.actor }}" > ./vue/last_deploy.txt
           date >> ./vue/last_deploy.txt
-          scp -r -o stricthostkeychecking=no -o UserKnownHostsFile=/dev/null -i "~/prod_key.pem" ./web/* ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}:/home/a22rauespgom/web/a22rauespgom.daw.inspedralbes.cat/public_html/actions/vue
+          scp -r -o stricthostkeychecking=no -o UserKnownHostsFile=/dev/null -i "~/prod_key.pem" ./vue/dist/* ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}:/home/a22rauespgom/web/a22rauespgom.daw.inspedralbes.cat/public_html/actions/vue
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
