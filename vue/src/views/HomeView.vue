@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div v-if="selectedNumber !== null" class="selected-number">
-      Has clifsfdsfdcat: #{{ selectedNumber }}
+      Has clicat: #{{ selectedNumber }}
     </div>
     <div class="grid">
       <button v-for="number in numbers" :key="number" @click="showNumber(number)" class="button">
