@@ -1,6 +1,12 @@
 name: Preparant per producció
 run-name: ${{ github.actor }} està pujant l'aplicació a PROD  🚀
-on: [push]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 jobs:
   Pujar-a-produccio-amb-SCP:
     runs-on: ubuntu-latest
@@ -16,5 +22,20 @@ jobs:
           echo "Action desplegant a produccio per ${{ github.actor }}" > ./web/last_deploy.txt
           date >> ./web/last_deploy.txt
           scp -r -o stricthostkeychecking=no -o UserKnownHostsFile=/dev/null -i "~/prod_key.pem" ./web/* ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}:/home/a22rauespgom/web/a22rauespgom.daw.inspedralbes.cat/public_html/actions
+
+      - name: Instal·la dependències i construeix l'aplicació
+        run: |
+          cd ${{ github.workspace }}/vue
+          npm install
+          npm run build
+
+      - name: Subiendo vue a producción
+        run: |
+          echo "${{ secrets.PROD_KEY }}" > ~/prod_key.pem
+          chmod 600 ~/prod_key.pem
+          cd ${{ github.workspace }}
+          echo "Action desplegant VUE a produccio per ${{ github.actor }}" > ./vue/last_deploy.txt
+          date >> ./vue/last_deploy.txt
+          scp -r -o stricthostkeychecking=no -o UserKnownHostsFile=/dev/null -i "~/prod_key.pem" ./web/* ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}:/home/a22rauespgom/web/a22rauespgom.daw.inspedralbes.cat/public_html/actions/vue
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
