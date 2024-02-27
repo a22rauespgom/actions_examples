@@ -1,13 +1,9 @@
-<template>
-  <div>
-    <h1>Hi</h1>
-  </div>
-</template>
-
-<script>
-export default {
-
-}
+<script setup>
+import TheWelcome from '../components/TheWelcome.vue'
 </script>
 
-<style scoped></style>
+<template>
+  <main>
+    <TheWelcome />
+  </main>
+</template>
