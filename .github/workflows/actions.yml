@@ -28,8 +28,14 @@ jobs:
           cd ${{ github.workspace }}/vue
           npm install
           npm run build
+      
+      - name: Pruebas ESLint
+        run: |
+          cd ${{ github.workspace }}/vue
+          npm run lint
 
       - name: Subiendo vue a producción
+        if: ${{failure()}} == false
         run: |
           echo "${{ secrets.PROD_KEY }}" > ~/prod_key.pem
           chmod 600 ~/prod_key.pem
