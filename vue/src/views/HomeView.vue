@@ -20,9 +20,9 @@ export default {
     }
   },
   methods: {
-    showNumber (number) {
+    showNumber(number) {
       this.selectedNumber = number
-    };
+    }
   }
 }
 </script>

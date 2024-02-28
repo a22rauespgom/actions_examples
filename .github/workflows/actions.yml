@@ -23,16 +23,18 @@ jobs:
       #     date >> ./web/last_deploy.txt
       #     scp -r -o stricthostkeychecking=no -o UserKnownHostsFile=/dev/null -i "~/prod_key.pem" ./web/* ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}:/home/a22rauespgom/web/a22rauespgom.daw.inspedralbes.cat/public_html/actions
 
-      - name: Instal·la dependències i construeix l'aplicació
-        run: |
-          cd ${{ github.workspace }}/vue
-          npm install
-          npm run build
-      
       - name: Pruebas ESLint
         run: |
           cd ${{ github.workspace }}/vue
+          npm ci
           npm run lint
+
+      - name: Instal·la dependències i construeix l'aplicació
+        if: ${{failure()}} == false
+        run: |
+          cd ${{ github.workspace }}/vue
+          npm run build
+      
 
       - name: Subiendo vue a producción
         if: ${{failure()}} == false
