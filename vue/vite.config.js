@@ -7,7 +7,7 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   base: '/actions/',
   plugins: [
-    vue(),
+    vue()
   ],
   resolve: {
     alias: {
